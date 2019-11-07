@@ -3,7 +3,7 @@ import './Rank.css'
 import Tile from '../../Tiles/Tile/Tile'
 
 class Rank extends Component {
-    calculateTileColour(rank, file) {
+    calculateBaseTileColour(rank, file) {
         return (rank % 2 === 0) === (file % 2 === 0) ? 'sandybrown' : 'saddlebrown'
     }
 
@@ -11,12 +11,16 @@ class Rank extends Component {
         const files = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
         const tiles = files.map((file, index) => {
             const gridRef = file + "" + (this.props.rankId)
-            console.log(this.props.setup)
+            const pieceName = this.props.setup[gridRef];
+            const piece = this.props.setup[gridRef] ? {
+                name: pieceName,
+                permittedMoves: this.props.moveCalculator.calculateFor(pieceName, gridRef)
+            } : null;
             return <Tile
                 key={index}
-                tileColour={this.calculateTileColour(this.props.rankId, index)}
+                tileColour={this.calculateBaseTileColour(this.props.rankId, index)}
                 tileReference={gridRef}
-                piece={this.props.setup[gridRef]}
+                piece={piece}
             />
         })
         return (

@@ -7,7 +7,7 @@ const pieceImage = (props) => {
     const imageFile = require('../../assets/images/' + props.name)
 
     return (
-        <div className="PieceImage" >
+        <div className="PieceImage" style={{ border: props.selected ? '1px solid blue' : null }}>
             <img src={imageFile} alt={props.name} />
         </div>
     )
