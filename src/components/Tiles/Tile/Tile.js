@@ -4,7 +4,8 @@ import './Tile.css'
 import PieceImage from '../../PieceImage/PieceImage'
 
 const tile = (props) => {
-    const pieceImage = props.piece ? <PieceImage name="burger-logo.png" /> : null
+    //console.log(props.piece)
+    const pieceImage = props.piece ? <PieceImage name={props.piece + ".png"} /> : null
     return (
         <div
             className="Tile"
